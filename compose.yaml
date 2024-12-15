@@ -6,3 +6,14 @@ services:
       NODE_ENV: production
     ports:
       - 3000:3000
+  db:
+    image: mysql:latest
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./cmsUsers-mysql.sql:/docker-entrypoint-initdb.d/1.sql
+    # command: --init-file /data/application/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: zse_tai3
