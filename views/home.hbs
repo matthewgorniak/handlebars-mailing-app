@@ -6,7 +6,19 @@
 	<title>Handlebars mailing app</title>
 </head>
 <body>
-	<p>Hello world</p>
-	Test
+	<table>
+		<tr>
+			<th>Surname</th>
+			<th>Name</th>
+			<th>Email</th>
+		</tr>
+		{{#each users}}
+			<tr>
+				<td>{{this.surname}}</td>
+				<td>{{this.name}}</td>
+				<td>{{this.email}}</td>
+			</tr>
+		{{/each}}
+	</table>
 </body>
 </html>
