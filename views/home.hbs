@@ -4,21 +4,42 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Handlebars mailing app</title>
+
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<table>
-		<tr>
-			<th>Surname</th>
-			<th>Name</th>
-			<th>Email</th>
-		</tr>
-		{{#each users}}
+	<main>
+		<table>
 			<tr>
-				<td>{{this.surname}}</td>
-				<td>{{this.name}}</td>
-				<td>{{this.email}}</td>
+				<th>Select</th>
+				<th>Surname</th>
+				<th>Name</th>
+				<th>Email</th>
 			</tr>
-		{{/each}}
-	</table>
+			{{#each users}}
+				<tr>
+					<td><input type="checkbox" data-email="{{this.email}}" name="userSelect" id="{{this.id}}"></td>
+					<td>{{this.surname}}</td>
+					<td>{{this.name}}</td>
+					<td>{{this.email}}</td>
+				</tr>
+			{{/each}}
+		</table>
+		<div class="menu">
+			<input type="text" name="topic" id="emailTopic">
+			<button onclick="sendMail()">Send E-Mails</button>
+		</div>
+	</main>
+
+	<script>
+		function sendMail() {
+			const selectedUsersInputs = document.querySelectorAll('input[name="userSelect"]:checked');
+			const selectedUsers = Array.from(selectedUsersInputs);
+			selectedUsers.forEach((user) => {
+				console.log(user.id, user.dataset.email);
+			});
+			return 0;
+		}
+	</script>
 </body>
 </html>

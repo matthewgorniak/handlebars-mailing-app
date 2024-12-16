@@ -8,6 +8,8 @@ const app = express();
 app.set('views', path.join(__dirname, "/views"));
 app.set('view engine', 'hbs');
 
+app.use(express.static('public'));
+
 const db = mysql.createConnection({
 	host: (process.env.DB_HOST || "localhost"),
 	user: "root",
@@ -21,7 +23,7 @@ db.connect((err) => {
 });
 
 app.get('/', (req, res) => {
-	db.query("SELECT `surname`, `name`, `email` FROM cmsUsers ORDER BY `surname` ASC;", (err, rows) => {
+	db.query("SELECT `id`, `surname`, `name`, `email` FROM cmsUsers ORDER BY `surname` ASC;", (err, rows) => {
 		if (err) throw err;
 		
 		res.render('home', {
