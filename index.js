@@ -9,7 +9,7 @@ app.set('views', path.join(__dirname, "/views"));
 app.set('view engine', 'hbs');
 
 const db = mysql.createConnection({
-	host: process.env.DB_HOST || "localhost",
+	host: (process.env.DB_HOST || "localhost"),
 	user: "root",
 	password: "password",
 	database: "zse_tai3"
